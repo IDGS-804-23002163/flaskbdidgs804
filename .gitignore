@@ -1,3 +1,5 @@
 static/
 static/.*
 node_modules/
+.env
+static
