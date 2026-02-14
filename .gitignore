@@ -1,0 +1,3 @@
+static/
+static/.*
+node_modules/
