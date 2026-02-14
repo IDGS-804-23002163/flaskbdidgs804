@@ -1,22 +1,21 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask_wtf.csrf import CSRFProtect
 from config import DevelopmentConfig
-import forms
 from models import db
 from models import Alumnos
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 
-csrf = CSRFProtect()
+csrf = CSRFProtect(app)
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/index")
 def index():
-    create_form = forms.UsuarioForm(request.form)
-    alumno = Alumnos.query.all()
-    return render_template("index.html", form=create_form, alumnos=alumno)
+    alumnos = Alumnos.query.all()
+    return render_template("index.html", alumnos=alumnos)
+
 
 
 @app.errorhandler(404)
@@ -29,11 +28,7 @@ def alumnos():
     return render_template("alumnos.html")
 
 
-
-
-
 if __name__ == '__main__':
-    csrf.init_app(app)
     db.init_app(app)
 
     with app.app_context():
