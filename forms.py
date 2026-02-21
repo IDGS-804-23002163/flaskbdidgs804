@@ -5,14 +5,17 @@ from wtforms.validators import DataRequired
 
 class UsuarioForm(FlaskForm):
     id = IntegerField(
-        "id", validators=[DataRequired(message="elcampo es requerido")]
+        "id"
     )
     nombre = StringField(
         "nombre", validators=[DataRequired(message="elcampo es requerido")]
     )
-    apellido = StringField(
-        "apellido", validators=[DataRequired(message="elcampo es requerido")]
+    apellidos = StringField(
+        "apellidos", validators=[DataRequired(message="elcampo es requerido")]
     )
     correo = EmailField(
         "correo", validators=[DataRequired(message="elcampo es requerido")]
+    )
+    telefono = StringField(
+        "telefono", validators=[DataRequired(message="elcampo es requerido")]
     )
